@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 
 <dom-module id="advicetool-app">
@@ -12,7 +13,7 @@
       }
 
       app-toolbar {
-        background-color: var(--paper-red-900);
+        background-color: var(--paper-orange-900);
         color: white;
         margin: 20px 0;
       }
@@ -22,6 +23,12 @@
         --paper-slider-active-color: var(--paper-orange-500);
         width: 100%;
         ;
+      }
+
+      paper-button.reset {
+        background: var(--paper-orange-900);
+        color: white;
+        width: 100%;
       }
 
       #advicetool-container {
@@ -51,6 +58,17 @@
       <div>Ervaart u het als veilig om de cash omzet af te storten?</div>
       <paper-slider class="orange" value="{{chosen3}}" min='1' max='3' pin snaps max-markers="3" step="1" editable>
       </paper-slider>
+      <br/>
+      <br/> Antwoord A : {{antwoordA}}
+      <br/>
+      <br/> Antwoord B : {{antwoordB}}
+      <br/>
+      <br/> Antwoord C : {{antwoordC}}
+      </br>
+      </br>
+      <paper-button class="reset" on-click="_reset" role="button">
+        Reset
+      </paper-button>
     </div>
   </template>
 
@@ -72,6 +90,10 @@
             type: String,
             computed: 'getQuastionOne(chosen1)'
           },
+          antwoordA: {
+            type: Number,
+            value: 0
+          },
           chosen2: {
             type: String
           },
@@ -79,44 +101,56 @@
             type: String,
             computed: 'getQuastionTwo(chosen2)'
           },
+          antwoordB: {
+            type: Number,
+            value: 0
+          },
           chosen3: {
             type: String
           },
           quastionThree: {
             type: String,
             computed: 'getQuastionThree(chosen3)'
+          },
+          antwoordC: {
+            type: Number,
+            value: 0
           }
         };
       }
 
       getQuastionOne(chosen1) {
         if (chosen1 == '1') {
-          console.log("chosen1 is A")
+          return this.antwoordA += 1;
         } else if (chosen1 == '2') {
-          console.log("chosen1 is B")
+          return this.antwoordB += 1;
         } else if (chosen1 == '3') {
-          console.log("chosen1 is C")
+          return this.antwoordC += 1;
         }
       }
 
       getQuastionTwo(chosen2) {
         if (chosen2 == '1') {
-          console.log("chosen2 is A")
+          this.antwoordA += 1;
         } else if (chosen2 == '2') {
-          console.log("chosen2 is B")
+          this.antwoordB += 1;
         } else if (chosen2 == '3') {
-          console.log("chosen2 is C")
+          this.antwoordC += 1;
         }
       }
 
       getQuastionThree(chosen3) {
         if (chosen3 == '1') {
-          console.log("chosen3 is A")
+          this.antwoordA += 1;
         } else if (chosen3 == '2') {
-          console.log("chosen3 is B")
+          this.antwoordB += 1;
         } else if (chosen3 == '3') {
-          console.log("chosen3 is C")
+          this.antwoordC += 1;
         }
+      }
+
+      _reset() {
+        window.location.reload();
       }
     }
 
