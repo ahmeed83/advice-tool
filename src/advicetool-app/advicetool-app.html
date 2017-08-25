@@ -1,13 +1,57 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+
 
 <dom-module id="advicetool-app">
   <template>
     <style>
-      :host {
+       :host {
         display: block;
+        font-family: Roboto, Noto, sans-serif;
+      }
+
+      app-toolbar {
+        background-color: var(--paper-red-900);
+        color: white;
+        margin: 20px 0;
+      }
+
+      paper-slider.orange {
+        --paper-slider-knob-color: var(--paper-orange-900);
+        --paper-slider-active-color: var(--paper-orange-500);
+        width: 100%;
+        ;
+      }
+
+      #advicetool-container {
+        max-width: 700px;
+        width: 90%;
+        margin: 0 auto;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+
+    <div id="advicetool-container">
+      <app-header>
+        <app-toolbar>
+          <div main-title>Quastions</div>
+        </app-toolbar>
+      </app-header>
+      <br/>
+      <br/>
+      </br>
+      <div>Wie maakt de storting gereed om af te storten?</div>
+      <paper-slider class="orange" value="{{chosen1}}" min='1' max='3' pin snaps max-markers="3" step="1" editable>
+      </paper-slider>
+      <br/>
+      <div>Welke tijd van de dag stort u de cash omzet af? </div>
+      <paper-slider class="orange" value="{{chosen2}}" min='1' max='3' pin snaps max-markers="3" step="1" editable>
+      </paper-slider>
+      <br/>
+      <div>Ervaart u het als veilig om de cash omzet af te storten?</div>
+      <paper-slider class="orange" value="{{chosen3}}" min='1' max='3' pin snaps max-markers="3" step="1" editable>
+      </paper-slider>
+    </div>
   </template>
 
   <script>
@@ -16,14 +60,63 @@
      * @polymer
      */
     class AdvicetoolApp extends Polymer.Element {
-      static get is() { return 'advicetool-app'; }
+      static get is() {
+        return 'advicetool-app';
+      }
       static get properties() {
         return {
-          prop1: {
+          chosen1: {
+            type: String
+          },
+          quastionOne: {
             type: String,
-            value: 'advicetool-app'
+            computed: 'getQuastionOne(chosen1)'
+          },
+          chosen2: {
+            type: String
+          },
+          quastionTwo: {
+            type: String,
+            computed: 'getQuastionTwo(chosen2)'
+          },
+          chosen3: {
+            type: String
+          },
+          quastionThree: {
+            type: String,
+            computed: 'getQuastionThree(chosen3)'
           }
         };
+      }
+
+      getQuastionOne(chosen1) {
+        if (chosen1 == '1') {
+          console.log("chosen1 is A")
+        } else if (chosen1 == '2') {
+          console.log("chosen1 is B")
+        } else if (chosen1 == '3') {
+          console.log("chosen1 is C")
+        }
+      }
+
+      getQuastionTwo(chosen2) {
+        if (chosen2 == '1') {
+          console.log("chosen2 is A")
+        } else if (chosen2 == '2') {
+          console.log("chosen2 is B")
+        } else if (chosen2 == '3') {
+          console.log("chosen2 is C")
+        }
+      }
+
+      getQuastionThree(chosen3) {
+        if (chosen3 == '1') {
+          console.log("chosen3 is A")
+        } else if (chosen3 == '2') {
+          console.log("chosen3 is B")
+        } else if (chosen3 == '3') {
+          console.log("chosen3 is C")
+        }
       }
     }
 
