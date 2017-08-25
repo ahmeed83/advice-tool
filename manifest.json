@@ -1,0 +1,7 @@
+{
+  "name": "advicetool-ing",
+  "short_name": "advicetool-ing",
+  "description": "Discriminerende vragen voor adviestool",
+  "start_url": "/",
+  "display": "standalone"
+}
